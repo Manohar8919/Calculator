@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         .container{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* background:linear-gradient(yellow,green); */
+        }
+        .calc{
+            width: 400px;
+            height: 500px;
+            background-color:pink;
+            display: flex;
+            /* justify-content: center; */
+            border-radius: 9px;
+            box-shadow: 3px 4px 14px 14px rgb(216, 78, 101);
+            flex-direction: column;
+            /* align-items: center; */
+            
+        }
+        h1{
+            color: rgb(20, 18, 32);
+        }
+        .output{
+            height: 20%;
+            width: 100%;
+            background-color: rgb(228, 164, 164);
+            font-size: 28px;
+        }
+        .content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+        button{
+            width: 60px;
+            height: 60px;
+            row-gap: 20px;
+            border-radius: 8px;
+            font-size: 22px;
+            outline: none;
+            border: 0px solid pink;
+            transition: 0.2s ;
+            
+           
+        }
+        button:hover{
+            background-color: rgb(218, 168, 94);
+        }
+        button:active{
+            background-color: rgb(180, 42, 51);
+        }
+        #butt{
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculator</h1>
+    <div class="calc">
+        <div class="output">
+            <h3 id="result">0
+            </h3>
+        </div>
+        <div class="content">
+            <div class="content-one">
+                <button>C</button>
+                <button>DEL</button>
+
+                <button>+</button>
+
+                <button>%</button>
+
+         
+            </div>
+            <div class="content-two">
+                <button>7</button>
+                <button>8</button>
+
+                <button>9</button>
+
+                <button>/</button>
+            </div>
+
+            <div class="content-three">
+                <button>4</button>
+                <button>5</button>
+
+                <button>6</button>
+
+                <button>*</button>
+            </div>
+
+            <div class="content-four">
+                <button>1</button>
+                <button>2</button>
+
+                <button>3</button>
+
+                <button>-</button>
+            </div>
+
+            <div class="content-five">
+                <button>.</button>
+                <button>0</button>
+
+                <button id="butt">=</button>
+
+               
+            </div>
+
+        </div>
+    </div>
+  </div>
+<script>
+    let buttons=document.getElementsByTagName("button")
+
+    let results=document.getElementById("result")
+
+    for( i=0;i<buttons.length;i++)
+    {
+        buttons[i].onclick=function (){
+            let input=this.innerText;
+            updateDisplay(input)
+        }
+    }
+
+    function updateDisplay(input)
+    {
+        let currentDisplay=results.innerText
+
+        if(currentDisplay=="0")
+        {
+            if(input!="C" && input!="DEL" && input!="=")
+            {
+                results.innerText=""
+                results.innerText= input
+            }
+        }
+        else{
+            if(input=="DEL")
+        {
+            results.innerText=currentDisplay.substring(0,currentDisplay.length-1)
+            
+        }
+        if(input=="C")
+        {
+            results.innerText="0"
+        }
+        if(input!="C" && input!="DEL" && input!="=")
+        {
+            results.innerText+=input
+         
+        }
+        if(input=="=")
+        {
+            let display=results.innerText
+            results.innerText=eval(display)
+
+        }
+        }
+    }
+</script>
+</body>
+</html>
